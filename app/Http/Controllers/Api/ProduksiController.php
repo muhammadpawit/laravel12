@@ -15,7 +15,7 @@ class ProduksiController extends Controller
 {
     
      $validated = $request->validate([
-        'jenispo' => 'required', // wajib
+        'jenispo' => 'required|numeric', // wajib
     ]);
     
     $jenispo = $request->jenispo != 'null' ? $request->jenispo : null;
