@@ -62,6 +62,7 @@ class ProduksiController extends Controller
             $service->getPcsK($p->kode_po, "JAHIT", "SETOR"),
             $service->dashKirimGudangPcs($p->kode_po),
             $service->pcsRijek($p->kode_po),
+            0,
             // app('App\Models\ReportModel')->selisih($p->kode_po),
             // app('App\Models\ReportModel')->bangke($p->kode_po),
         ];
