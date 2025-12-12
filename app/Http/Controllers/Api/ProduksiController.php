@@ -13,25 +13,26 @@ class ProduksiController extends Controller
 
     public function monitor(Request $request, ProduksiPoService $service)
 {
-    
-     $validated = $request->validate([
-        'jenispo' => 'required|numeric', // wajib
+    // Validasi wajib
+    $validated = $request->validate([
+        'jenispo' => 'required|numeric',
     ]);
-    
-    $jenispo = $request->jenispo != 'null' ? $request->jenispo : null;
-    $validasi = $request->validasi != 'null' ? $request->validasi : null;
-    $modelPo = $request->model_po != 'null' ? $request->model_po : null;
 
+    $jenispo  = $request->jenispo !== 'null' ? $request->jenispo : null;
+    $validasi = $request->validasi !== 'null' ? $request->validasi : null;
+    $modelPo  = $request->model_po !== 'null' ? $request->model_po : null;
+
+    // Query utama
     $query = DB::table('produksi_po as p')
+        ->join('konveksi_buku_potongan as kb', function($join){
+            $join->on('kb.kode_po', '=', 'p.kode_po')
+                 ->where('kb.hapus', 0);
+        })
         ->leftJoin('master_jenis_po as m', 'm.nama_jenis_po', '=', 'p.nama_po')
         ->where('p.hapus', 0)
-        ->whereIn('p.kode_po', function ($q) {
-            $q->select('kode_po')
-              ->from('konveksi_buku_potongan')
-              ->where('hapus', 0);
-        })
         ->whereNotIn('p.nama_po', ['BJF','BJK','BJH']);
 
+    // Filter dinamis
     if ($jenispo) {
         $query->where('m.id_jenis_po', $jenispo);
     }
@@ -44,16 +45,20 @@ class ProduksiController extends Controller
         $query->where('p.model_po', $modelPo);
     }
 
-    // Ambil per_page dari FE (opsional)
-    $perPage = request()->get('per_page', 10);
+    // Pagination
+    $perPage = $request->input('per_page', 10);
+    $page    = $request->input('page', 1);
 
-    $allpo = $query->orderBy('p.kode_po', 'ASC')
-                ->paginate($perPage);
+    $paginated = $query->orderBy('p.kode_po', 'ASC')
+                       ->paginate($perPage, ['p.*'], 'page', $page);
 
+    $rows = $paginated->items();
+
+    // Output DataTables
     $data = [];
     $no = ($request->start ?? 0) + 1;
 
-    foreach ($allpo as $p) {
+    foreach ($rows as $p) {
 
         $data[] = [
             $no++,
@@ -72,8 +77,11 @@ class ProduksiController extends Controller
 
     return response()->json([
         'draw' => $request->draw,
-        'data' => $data
+        'data' => $data,
+        'recordsTotal' => $paginated->total(),
+        'recordsFiltered' => $paginated->total(),
     ]);
 }
+
 
 }
