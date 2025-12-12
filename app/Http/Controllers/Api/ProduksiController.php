@@ -44,7 +44,11 @@ class ProduksiController extends Controller
         $query->where('p.model_po', $modelPo);
     }
 
-    $allpo = $query->orderBy('p.kode_po', 'ASC')->get();
+    // Ambil per_page dari FE (opsional)
+    $perPage = request()->get('per_page', 10);
+
+    $allpo = $query->orderBy('p.kode_po', 'ASC')
+                ->paginate($perPage);
 
     $data = [];
     $no = ($request->start ?? 0) + 1;
@@ -63,8 +67,6 @@ class ProduksiController extends Controller
             $service->dashKirimGudangPcs($p->kode_po),
             $service->pcsRijek($p->kode_po),
             0,
-            // app('App\Models\ReportModel')->selisih($p->kode_po),
-            // app('App\Models\ReportModel')->bangke($p->kode_po),
         ];
     }
 
