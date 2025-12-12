@@ -11,7 +11,7 @@ class ProduksiController extends Controller
 {
     //
 
-    public function monitor(Request $request, ProduksiPoService $service)
+    public function proses_produksi(Request $request, ProduksiPoService $service)
 {
     $jenispo  = $request->input('jenispo') !== 'null' ? $request->input('jenispo') : null;
     $validasi = $request->input('validasi') !== 'null' ? $request->input('validasi') : null;

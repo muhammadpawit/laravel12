@@ -9,5 +9,5 @@ use App\Http\Controllers\Api\ProduksiController;
 Route::post('request-token', [CIAuthController::class, 'requestToken']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('data-users', [CIDataController::class, 'users']);
-    Route::get('monitor', [ProduksiController::class, 'monitor']);
+    Route::get('proses-produksi', [ProduksiController::class, 'proses_produksi']);
 });
