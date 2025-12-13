@@ -10,4 +10,6 @@ Route::post('request-token', [CIAuthController::class, 'requestToken']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('data-users', [CIDataController::class, 'users']);
     Route::get('proses-produksi', [ProduksiController::class, 'proses_produksi']);
+
+    Route::get('report-potongan', [ProduksiController::class, 'potongan']);
 });
