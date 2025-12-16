@@ -53,11 +53,11 @@ class ProduksiPoService
                 ->sum('kb.hasil_pieces_potongan');
         }
 
-        if ($table == 2) {
-            return DB::table('kelolapo_pengecekan_potongan')
-                ->where('id_produksi_po', $kodePo)
-                ->value('jumlah_total_potongan') ?? 0;
-        }
+        // if ($table == 2) {
+        //     return DB::table('kelolapo_pengecekan_potongan')
+        //         ->where('id_produksi_po', $kodePo)
+        //         ->value('jumlah_total_potongan') ?? 0;
+        // }
 
         return 0;
     }

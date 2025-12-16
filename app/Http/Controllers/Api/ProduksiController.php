@@ -36,12 +36,13 @@ class ProduksiController extends Controller
 
         $paginated = $query->select(
             'p.kode_po',
+            'p.id_produksi_po',
             DB::raw('MAX(p.keterangan) as keterangan'),
             DB::raw('MAX(p.validasi) as validasi'),
             DB::raw('MAX(p.model_po) as model_po')
         )
-        ->groupBy('p.kode_po')
-        ->orderBy('p.kode_po','ASC')
+        ->groupBy('p.id_produksi_po')
+        ->orderBy('p.id_produksi_po','ASC')
         ->paginate($perPage, ['*'], 'page', $page);
 
 
@@ -53,15 +54,15 @@ class ProduksiController extends Controller
             $data[] = [
                 $no++,
                 strtoupper($p->kode_po),
-                $service->getPcs($p->id_produksi_po, 1),
-                $service->getPcs($p->id_produksi_po, 2),
+                $service->getPcs($p->id_produksi_po, 1), // potongan
+                // $service->getPcs($p->id_produksi_po, 2),
                 $service->getPcsK($p->id_produksi_po,"SABLON","KIRIM"),
                 $service->getPcsK($p->id_produksi_po,"BORDIR","KIRIM"),
                 $service->getPcsK($p->id_produksi_po,"JAHIT","KIRIM"),
                 $service->getPcsK($p->id_produksi_po,"JAHIT","SETOR"),
                 $service->dashKirimGudangPcs($p->id_produksi_po),
                 $service->pcsRijek($p->id_produksi_po),
-                0
+                // 0
             ];
         }
 
