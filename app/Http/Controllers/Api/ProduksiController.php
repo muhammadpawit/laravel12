@@ -41,7 +41,7 @@ class ProduksiController extends Controller
             DB::raw('MAX(p.validasi) as validasi'),
             DB::raw('MAX(p.model_po) as model_po')
         )
-        ->groupBy('p.id_produksi_po')
+        ->groupBy('p.id_produksi_po', 'p.kode_po')
         ->orderBy('p.id_produksi_po','ASC')
         ->paginate($perPage, ['*'], 'page', $page);
 
