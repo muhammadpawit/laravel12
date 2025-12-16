@@ -13,7 +13,7 @@ class ProduksiPoService
     {
         return DB::table('finishing_kirim_gudang as fkg')
             ->join('produksi_po as p', 'p.id_produksi_po', '=', 'fkg.idpo')
-            ->where('fkg.kode_po', $kodepo)
+            ->where('fkg.idpo', $kodepo)
             ->whereNull('tahunpo')
             ->sum('fkg.jumlah_piece_diterima');
     }
@@ -37,7 +37,7 @@ class ProduksiPoService
         }
 
         if ($kodePo) {
-            $query->where('rpo.kode_po', $kodePo);
+            $query->where('rpo.idpo', $kodePo);
         }
 
         return (int) $query->sum('rpo.pcs');
@@ -48,14 +48,14 @@ class ProduksiPoService
         if ($table == 1) {
             return DB::table('konveksi_buku_potongan as kb')
                 ->join('produksi_po as p', 'p.id_produksi_po', '=', 'kb.idpo')
-                ->where('p.kode_po', $kodePo)
+                ->where('p.id_produksi_po', $kodePo)
                 ->where('kb.hapus', 0)
                 ->sum('kb.hasil_pieces_potongan');
         }
 
         if ($table == 2) {
             return DB::table('kelolapo_pengecekan_potongan')
-                ->where('kode_po', $kodePo)
+                ->where('id_produksi_po', $kodePo)
                 ->value('jumlah_total_potongan') ?? 0;
         }
 
@@ -68,7 +68,7 @@ class ProduksiPoService
         $baseQuery = DB::table('kelolapo_kirim_setor as kks')
             ->join('produksi_po as p', 'p.id_produksi_po', '=', 'kks.idpo')
             ->where('kks.hapus', 0)
-            ->where('kks.kode_po', $kodePo)
+            ->where('kks.idpo', $kodePo)
             ->where('kks.kategori_cmt', $kategori)
             ->where('kks.progress', $progress)
             ->where('kks.id_master_cmt', '!=', 85);
@@ -84,7 +84,8 @@ class ProduksiPoService
 
         // Hitung bangke
         $totalBangke = DB::table('kelolapo_rincian_setor_cmt_finish')
-            ->where('kode_po', 'LIKE', "%$kodePo%")
+            // ->where('kode_po', 'LIKE', "%$kodePo%")
+            ->where('idpo', $kodePo)
             ->sum('rincian_bangke');
 
         // Hitung pcs valid → pcs - bangke

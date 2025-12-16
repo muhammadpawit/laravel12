@@ -52,15 +52,15 @@ class ProduksiController extends Controller
         foreach($rows as $p){
             $data[] = [
                 $no++,
-                strtoupper($p->keterangan ?? $p->kode_po),
-                $service->getPcs($p->kode_po, 1),
-                $service->getPcs($p->kode_po, 2),
-                $service->getPcsK($p->kode_po,"SABLON","KIRIM"),
-                $service->getPcsK($p->kode_po,"BORDIR","KIRIM"),
-                $service->getPcsK($p->kode_po,"JAHIT","KIRIM"),
-                $service->getPcsK($p->kode_po,"JAHIT","SETOR"),
-                $service->dashKirimGudangPcs($p->kode_po),
-                $service->pcsRijek($p->kode_po),
+                strtoupper($p->kode_po),
+                $service->getPcs($p->id_produksi_po, 1),
+                $service->getPcs($p->id_produksi_po, 2),
+                $service->getPcsK($p->id_produksi_po,"SABLON","KIRIM"),
+                $service->getPcsK($p->id_produksi_po,"BORDIR","KIRIM"),
+                $service->getPcsK($p->id_produksi_po,"JAHIT","KIRIM"),
+                $service->getPcsK($p->id_produksi_po,"JAHIT","SETOR"),
+                $service->dashKirimGudangPcs($p->id_produksi_po),
+                $service->pcsRijek($p->id_produksi_po),
                 0
             ];
         }
