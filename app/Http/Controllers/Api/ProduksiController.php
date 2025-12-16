@@ -62,7 +62,7 @@ class ProduksiController extends Controller
                 $service->getPcsK($p->id_produksi_po,"JAHIT","SETOR"),
                 $service->dashKirimGudangPcs($p->id_produksi_po),
                 $service->pcsRijek($p->id_produksi_po),
-                // 0
+                0
             ];
         }
 
