@@ -83,10 +83,11 @@ class ProduksiPoService
         }
 
         // Hitung bangke
-        $totalBangke = DB::table('kelolapo_rincian_setor_cmt_finish')
-            // ->where('kode_po', 'LIKE', "%$kodePo%")
-            ->where('idpo', $kodePo)
-            ->sum('rincian_bangke');
+        // $totalBangke = DB::table('kelolapo_rincian_setor_cmt_finish')
+        //     // ->where('kode_po', 'LIKE', "%$kodePo%")
+        //     ->where('idpo', $kodePo)
+        //     ->sum('rincian_bangke');
+        $totalBangke = 0;
 
         // Hitung pcs valid → pcs - bangke
         return max(0, (int)$totalPcs - (int)$totalBangke);
