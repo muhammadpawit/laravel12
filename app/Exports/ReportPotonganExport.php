@@ -12,6 +12,7 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
 {
     protected $service;
     protected $request;
+    protected $no = 1;
 
     public function __construct(ReportPotonganService $service, $request)
     {
@@ -21,33 +22,31 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
 
     public function collection()
     {
-        $response = $this->service->potongan($this->request);
-
-        // ambil hanya array data
-        return collect($response['data']);
+         return collect($this->service->potongan($this->request));
     }
 
     public function map($row): array
     {
         return [
-            $row[0],   // #
-            $row[1],   // Tanggal
-            $row[2],   // Tim Potong
-            $row[3],   // Nama PO
-            $row[4],   // Roll Bahan
-            $row[5],   // Panjang Gelaran
-            $row[6],   // Pemakaian Bahan Kaos
-            $row[7],   // Pemakaian Bahan Celana
-            $row[8],   // Size
-            $row[9],   // Jml PO (Dz)
-            $row[10],  // Jml PO (Pcs)
+            $this->no++,                         // #
+            $row->created_date,                  // Tanggal
+            $row->tim_potong_potongan,           // Tim Potong
+            $row->kode_po,                       // Nama PO
+            $row->bahan_potongan ?? '-',         // Roll Bahan
+            $row->panjang_gelaran_potongan_utama
+                .' + '.$row->panjang_gelaran_variasi, // Panjang Gelaran
+            $row->jumlah_pemakaian_bahan_utama, // Pemakaian Bahan Kaos
+            $row->jumlah_pemakaian_bahan_variasi, // Pemakaian Bahan Celana
+            $row->size_potongan,                // Size
+            $row->hasil_lusinan_potongan,        // Jml PO (Dz)
+            $row->hasil_pieces_potongan,         // Jml PO (Pcs)
         ];
     }
 
     public function headings(): array
     {
         return [
-            'No',
+            '#',
             'Tanggal',
             'Tim Potong',
             'Nama PO',
