@@ -9,7 +9,7 @@ use App\Services\ReportPotonganService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Maatwebsite\Excel\Excel;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProduksiController extends Controller
 {
