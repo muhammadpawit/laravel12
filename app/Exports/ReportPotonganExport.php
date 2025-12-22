@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Services\ReportPotonganService;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -22,7 +23,8 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
 
     public function collection()
     {
-         return collect($this->service->potongan($this->request));
+        dd($this->service->potongan($this->request)); 
+        return collect($this->service->potongan($this->request));
     }
 
     public function map($row): array
@@ -30,7 +32,7 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
         return [
             $this->no++,                         // #
             $row->created_date,                  // Tanggal
-            $row->tim_potong_potongan,           // Tim Potong
+            $this->namaTimPotong($row->tim_potong_potongan),           // Tim Potong
             $row->kode_po,                       // Nama PO
             $row->bahan_potongan ?? '-',         // Roll Bahan
             $row->panjang_gelaran_potongan_utama
@@ -58,5 +60,15 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
             'Jml PO (Dz)',
             'Jml PO (Pcs)',
         ];
+    }
+
+    function namaTimPotong($id)
+    {
+        $roll = DB::table('timpotong')
+            ->where('id', $id)
+            ->where('hapus', 0)
+            ->first();
+
+        return $roll->nama ?? '';
     }
 }
