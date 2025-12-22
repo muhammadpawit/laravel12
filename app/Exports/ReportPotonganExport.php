@@ -23,7 +23,6 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
 
     public function collection()
     {
-        dd($this->service->potongan($this->request)); 
         return collect($this->service->potongan($this->request));
     }
 
