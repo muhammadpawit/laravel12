@@ -33,7 +33,7 @@ class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings,
             $row->created_date,                  // Tanggal
             $this->namaTimPotong($row->tim_potong_potongan),           // Tim Potong
             $row->kode_po,                       // Nama PO
-            $row->bahan_potongan ?? '-',         // Roll Bahan
+            $row->pemakaian_bahan_utama ?? '-',         // Roll Bahan
             $row->panjang_gelaran_potongan_utama
                 .' + '.$row->panjang_gelaran_variasi, // Panjang Gelaran
             $row->jumlah_pemakaian_bahan_utama, // Pemakaian Bahan Kaos
