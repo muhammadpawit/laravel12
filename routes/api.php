@@ -12,4 +12,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('proses-produksi', [ProduksiController::class, 'proses_produksi']);
 
     Route::get('report-potongan', [ProduksiController::class, 'potongan']);
+    Route::get('report-potongan-excel', [ProduksiController::class, 'potongan_excel']);
 });

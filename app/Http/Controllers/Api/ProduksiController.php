@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Exports\ReportPotonganExport;
 use App\Http\Controllers\Controller;
 use App\Services\ProduksiPoService;
 use App\Services\ReportPotonganService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel;
 
 class ProduksiController extends Controller
 {
@@ -172,6 +174,17 @@ class ProduksiController extends Controller
             ->first();
 
         return $roll->nama ?? '';
+    }
+
+    public function potongan_excel(Request $request)
+    {
+        return Excel::download(
+            new ReportPotonganExport(
+                app(ReportPotonganService::class),
+                $request->all()
+            ),
+            'report_potongan.xlsx'
+        );
     }
 
 
