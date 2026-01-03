@@ -12,8 +12,14 @@ use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
+use Maatwebsite\Excel\Concerns\WithEvents;
 
-class ReportPotonganExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize
+class ReportPotonganExport implements
+    FromCollection,
+    WithMapping,
+    WithHeadings,
+    ShouldAutoSize,
+    WithEvents
 {
     protected $service;
     protected $request;
