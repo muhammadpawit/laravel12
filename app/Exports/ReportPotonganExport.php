@@ -102,7 +102,17 @@ class ReportPotonganExport implements
 
                 $sheet->setCellValue('A1', 'Monitoring Gambar dan Potongan Bahan (MGPB)');
                 $sheet->setCellValue('A2', 'PO Produksi Forboys');
-                $sheet->setCellValue('A3', 'Periode : 07 December 2025 - 13 December 2025');
+                // $sheet->setCellValue('A3', 'Periode : 07 December 2025 - 13 December 2025');
+                $from = $this->request->tanggal_from;
+                $to   = $this->request->tanggal_to;
+
+                $start = $this->formatTanggal($from);
+                $end   = $this->formatTanggal($to);
+
+                $sheet->setCellValue(
+                    'A3',
+                    "Periode : {$start} - {$end}"
+                );
 
                 $sheet->getStyle('A1:A3')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER);
@@ -176,6 +186,11 @@ class ReportPotonganExport implements
                     ->getFont()->setItalic(true)->setSize(9);
             },
         ];
+    }
+
+    private function formatTanggal($date)
+    {
+        return \Carbon\Carbon::parse($date)->translatedFormat('d F Y');
     }
 
 }
