@@ -20,6 +20,9 @@ class ProduksiController extends Controller
         $jenispo  = $request->input('jenispo') !== 'null' ? $request->input('jenispo') : null;
         $validasi = $request->input('validasi') !== 'null' ? $request->input('validasi') : null;
         $modelPo  = $request->input('model_po') !== 'null' ? $request->input('model_po') : null;
+        
+        $tahunReq = $request->input('tahun');
+        $tahunVal = $tahunReq ? $tahunReq . ($tahunReq + 1) : date('Y') . (date('Y') + 1);
 
         $perPage = $request->input('per_page', 25);
         $page    = $request->input('page', 1);
@@ -30,7 +33,7 @@ class ProduksiController extends Controller
             })
             ->leftJoin('master_jenis_po as m', 'm.nama_jenis_po', '=', 'p.nama_po')
             ->where('p.hapus', 0)
-            ->where('tahun', '20252026')
+            ->where('tahun', $tahunVal)
             ->whereNotIn('p.nama_po', ['BJF','BJK','BJH']);
 
         if ($jenispo)  $query->where('m.id_jenis_po', $jenispo);
