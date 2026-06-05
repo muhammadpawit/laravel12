@@ -21,7 +21,7 @@ class ProduksiController extends Controller
         $validasi = $request->input('validasi') !== 'null' ? $request->input('validasi') : null;
         $modelPo  = $request->input('model_po') !== 'null' ? $request->input('model_po') : null;
         
-        $tahunReq = $request->input('tahun');
+        $tahunReq = $request->input('tahun') !== 'null' ? $request->input('tahun') : null;
         $tahunVal = $tahunReq ? $tahunReq . ($tahunReq + 1) : date('Y') . (date('Y') + 1);
 
         $perPage = $request->input('per_page', 25);
