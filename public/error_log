@@ -1,0 +1,30 @@
+[12-Dec-2025 02:43:05 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:43:05 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:44:51 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:44:51 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:55:25 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:55:25 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:57:00 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 02:57:00 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 03:02:32 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 03:02:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 03:02:37 UTC] PHP Warning:  require(/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
+[12-Dec-2025 03:02:37 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/forboysp/api.forboysproduction.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php82/usr/share/pear:/opt/alt/php82/usr/share/php:/usr/share/pear:/usr/share/php') in /home/forboysp/api.forboysproduction.com/public/index.php:14
+Stack trace:
+#0 {main}
+  thrown in /home/forboysp/api.forboysproduction.com/public/index.php on line 14
